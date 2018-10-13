@@ -12,6 +12,9 @@ export default {
   name: "home",
   components: {
     GamesList
+  },
+  created(){
+        this.$store.dispatch('getGames');
   }
 };
 </script>

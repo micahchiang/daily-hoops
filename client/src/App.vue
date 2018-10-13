@@ -15,14 +15,14 @@ body {
   padding: 0;
 }
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #ffffff;
-  background: linear-gradient(to bottom right, #2c4750, #2c3550);
-  height: 100vh;
+  background: linear-gradient(to bottom right, #566c73, #2c3550);
   width: 100%;
+  min-height: 100vh;
   margin: 0;
 }
 #nav {
