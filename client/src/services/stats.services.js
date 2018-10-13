@@ -2,13 +2,17 @@ import axios from "axios";
 
 export default class StatsService {
   constructor() {
-    this.baseUrl =
-      "https://data.nba.com/data/5s/v2015/json/mobile_teams/nba/2018/scores/00_todays_scores.json";
+    this.baseUrl = "http://localhost:3000/";
   }
 
   getGames() {
     axios
-      .get(this.baseUrl)
+      .get(this.baseUrl + "games", {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json"
+        }
+      })
       .then(data => {
         return data;
       })
