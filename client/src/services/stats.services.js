@@ -6,18 +6,20 @@ export default class StatsService {
   }
 
   getGames() {
-    axios
-      .get(this.baseUrl + "games", {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json"
-        }
-      })
-      .then(data => {
-        return data;
-      })
-      .catch(e => {
-        console.log("an error occurred:", e);
-      });
+    return new Promise((resolve, reject) => {
+      axios
+        .get(this.baseUrl + "games", {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json"
+          }
+        })
+        .then(data => {
+          resolve(data);
+        })
+        .catch(e => {
+          reject(e);
+        });
+    });
   }
 }
