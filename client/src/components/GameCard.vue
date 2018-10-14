@@ -24,6 +24,23 @@ main {
   padding: 1rem;
   box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.3);
   background: rgba(112, 123, 126, 0.25);
+  transition: all 200ms;
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-3px);
+    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.3);
+
+    &:active {
+      transform: translateY(-2px);
+      box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.3);
+    }
+  }
+  header {
+    h3 {
+      font-weight: 100;
+    }
+  }
 }
 </style>
 
