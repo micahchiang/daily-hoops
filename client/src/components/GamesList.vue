@@ -33,6 +33,8 @@ export default {
         ...mapState({
             games: state => state.games
         })
+    },
+    methods: {
     }
 }
 </script>
