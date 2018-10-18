@@ -14,15 +14,22 @@
         </section>
         <div 
             class="boxscore__overlay"
-            v-bind:class="{ 'boxscore__overlay-visible': isShown }"    
+            v-bind:class="{ 'boxscore__overlay-visible': isShown }"  
+            @click="exitModal()"  
         >
+            <game-box-score></game-box-score>
         </div>
     </main>
 </template>
 
 <script>
+import GameBoxScore from "@/components/GameBoxScore.vue";
+
 export default {
     name: "GameCard",
+    components: {
+        GameBoxScore
+    },
     props: ["gameId","homeTeam", "awayTeam", "status", "homeScore", "awayScore"],
     data () {
         return {
@@ -31,7 +38,11 @@ export default {
     },
     methods: {
         onClick: function(gID) {
+            console.log(gID);
             this.isShown = true;
+        },
+        exitModal: function() {
+            this.isShown = false;
         }
     }
 }
@@ -64,15 +75,17 @@ export default {
 }
 .boxscore__overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: 0;
   width: 0;
   opacity: 0;
   background-color: rgba(0, 0, 0, 0.3);
   transition: all 200ms ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &-visible {
     opacity: 1;
