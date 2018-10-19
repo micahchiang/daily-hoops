@@ -17,7 +17,7 @@
             v-bind:class="{ 'boxscore__overlay-visible': isShown }"  
             @click="exitModal()"  
         >
-            <game-box-score></game-box-score>
+            <game-box-score v-if="isShown"></game-box-score>
         </div>
     </main>
 </template>
@@ -40,6 +40,7 @@ export default {
         onClick: function(gID) {
             console.log(gID);
             this.isShown = true;
+            this.$store.dispatch('getBoxScore', gID);
         },
         exitModal: function() {
             this.isShown = false;

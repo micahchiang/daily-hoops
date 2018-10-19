@@ -22,4 +22,21 @@ export default class StatsService {
         });
     });
   }
+
+  getBoxScore(gameID) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(this.baseUrl + "boxscore", {
+          params: {
+            id: gameID
+          }
+        })
+        .then(data => {
+          resolve(data);
+        })
+        .catch(e => {
+          reject(e);
+        });
+    });
+  }
 }

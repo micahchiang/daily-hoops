@@ -30,6 +30,18 @@ class App {
         res.send(body);
       });
     });
+    router.get('/boxscore', (req, res) => {
+      let id = req.query.id;
+      let options = {
+        method: 'GET',
+        url:
+          'https://data.nba.com/data/10s/v2015/json/mobile_teams/nba/2018/scores/gamedetail/'+id+'_gamedetail.json'
+      };
+      request(options, function(error, response, body){
+        if(error) throw new Error(error);
+        res.send(body);
+      })
+    });
     this.express.use('/', router);
   }
 
