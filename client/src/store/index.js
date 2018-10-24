@@ -29,9 +29,10 @@ const store = new Vuex.Store({
     async getBoxScore({ commit }, gameId) {
       console.log("getBoxScore", gameId);
       try {
-        // let res = await require("../../public/boxscore-sampledata.json");
-        let res = await stats.getBoxScore(gameId);
-        commit("setBoxScore", res.data);
+        let res = await require("../../public/boxscore-sampledata.json");
+        // commit("setBoxScore", res.data);
+        // let res = await stats.getBoxScore(gameId);
+        commit("setBoxScore", res);
       } catch (e) {
         console.log("an error occurred:", e);
       }

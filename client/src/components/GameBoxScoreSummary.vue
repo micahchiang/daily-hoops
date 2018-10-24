@@ -54,22 +54,23 @@ export default {
 
 <style lang="scss" scoped>
 .scoring__summary {
-    display: flex;
-    flex-direction: column;
-    margin: 0 3rem;
-    font-size: 1.25rem;
-    h1 {
-        font-weight: 100;
+  display: flex;
+  flex-direction: column;
+  margin: 0 1.5rem;
+  font-size: 1rem;
+  h1 {
+    font-weight: 100;
+  }
+  table {
+    border-collapse: collapse;
+    thead {
+      border-bottom: 1px solid #cccccc;
     }
-    table {
-        border-collapse: collapse;
-        thead {
-            border-bottom: 1px solid #cccccc;
-        }
-        th, td {
-            padding: 1rem;
-        }
+    th,
+    td {
+      padding: 1rem;
     }
+  }
 }
 </style>
 

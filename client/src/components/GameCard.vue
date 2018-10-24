@@ -1,25 +1,20 @@
 <template>
-    <main>
-        <section 
-            class="card__container"
-            @click="onClick(gameId)"
-        >
-            <header>
-                <h3>{{homeTeam}} vs {{awayTeam}}</h3>
-            </header>
-            <section>
-                <p>Score: {{homeScore}} - {{awayScore}}</p>
-                <p>Status: {{status}}</p>
+    <router-link :to="`/game/${gameId}`">
+        <main>
+            <section 
+                class="card__container"
+                @click="onClick(gameId)"
+            >
+                <header>
+                    <h3>{{homeTeam}} vs {{awayTeam}}</h3>
+                </header>
+                <section>
+                    <p>Score: {{homeScore}} - {{awayScore}}</p>
+                    <p>Status: {{status}}</p>
+                </section>
             </section>
-        </section>
-        <div 
-            class="boxscore__overlay"
-            v-bind:class="{ 'boxscore__overlay-visible': isShown }"  
-            @click="exitModal()"  
-        >
-            <game-box-score v-if="isShown"></game-box-score>
-        </div>
-    </main>
+        </main>
+    </router-link>
 </template>
 
 <script>
@@ -39,11 +34,7 @@ export default {
     methods: {
         onClick: function(gID) {
             console.log(gID);
-            this.isShown = true;
             this.$store.dispatch('getBoxScore', gID);
-        },
-        exitModal: function() {
-            this.isShown = false;
         }
     }
 }
@@ -83,7 +74,7 @@ export default {
   width: 0;
   opacity: 0;
   background-color: rgba(0, 0, 0, 0.3);
-  transition: all 200ms ease-in-out;
+  transition: all 100ms ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;

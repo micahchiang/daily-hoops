@@ -50,5 +50,9 @@ h1 {
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
 }
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
 </style>
 
