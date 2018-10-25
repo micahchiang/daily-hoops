@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import StatsService from "../services/stats.services";
+import StatsAdapter from "../utilities/stats.adapter";
 
 Vue.use(Vuex);
 
@@ -8,6 +9,7 @@ Vue.use(Vuex);
 // const dummyBox = require("../../public/boxscore-sampledata.json");
 
 const stats = new StatsService();
+const statsAdapter = new StatsAdapter();
 
 const store = new Vuex.Store({
   state: {
@@ -27,12 +29,12 @@ const store = new Vuex.Store({
       }
     },
     async getBoxScore({ commit }, gameId) {
-      console.log("getBoxScore", gameId);
       try {
-        let res = await require("../../public/boxscore-sampledata.json");
-        // commit("setBoxScore", res.data);
-        // let res = await stats.getBoxScore(gameId);
-        commit("setBoxScore", res);
+        // let res = await require("../../public/boxscore-sampledata.json");
+        let res = await stats.getBoxScore(gameId);
+        commit("setBoxScore", res.data);
+        // statsAdapter.formatStats(res.g.vls.pstsg);
+        // commit("setBoxScore", res);
       } catch (e) {
         console.log("an error occurred:", e);
       }

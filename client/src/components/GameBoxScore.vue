@@ -37,11 +37,11 @@
                         v-for="(cat, index) in statCategories"
                         :key="index"
                     >
-                        {{cat}}
+                        <p>{{cat.title}}</p>
+                        <p v-for="(stat, index) in category(homePlayerStats, cat.keys)" :key="index">
+                            {{stat}}
+                        </p>
                     </div>
-                </div>
-                <div class="team__boxscore__table__body">
-
                 </div>
             </div>
         </section>
@@ -59,12 +59,111 @@ export default {
     },
     computed: {
         ...mapState({
-            boxScore: state => state.boxScore
-        })
+            boxScore: state => state.boxScore,
+            homePlayerStats: state => state.boxScore.g.hls.pstsg,
+            awayPlayerStats: state => state.boxScore.g.vls.pstsg
+        }),
+    },
+    methods: {
+        category: function(players, keys) {
+            if(keys.indexOf("fn") > -1) {
+                let names = [];
+                for(let player of players) {
+                    names.push(`${player.fn.charAt(0)}. ${player.ln}`);
+                }
+                return names;
+            } else if(keys.indexOf("fgm") > -1) {
+                let fieldGoals = [];
+                for(let player of players) {
+                    fieldGoals.push(`${player.fgm}-${player.fga}`);
+                }
+                return fieldGoals;
+            } else if(keys.indexOf("tpm") > -1) {
+                let threes = [];
+                for(let player of players) {
+                    threes.push(`${player.tpm}-${player.tpa}`);
+                }
+                return threes;
+            } else if(keys.indexOf("ftm") > -1) {
+                let freeThrows = [];
+                for(let player of players) {
+                    freeThrows.push(`${player.ftm}-${player.fta}`);
+                }
+                return freeThrows;
+            } else {
+                let cat = [];
+                let key = keys[0];
+                for(let player of players) {
+                    cat.push(player[key]);
+                }
+                return cat;
+            }
+        }
     },
     data() {
         return {
-            statCategories: ["PLAYER","MIN","FG","3PT","FT","OREB","DREB","REB","AST","STL","BLK","TO","PF","+/-","PTS"],
+            statCategories: [
+                {
+                    title: "PLAYER",
+                    keys: ["fn", "ln"]
+                },
+                {
+                    title: "MIN",
+                    keys: ["min"]
+                },
+                {
+                    title: "FG",
+                    keys: ["fgm", "fga"]
+                },
+                {
+                    title: "3PM",
+                    keys: ["tpm", "tpa"]
+                },
+                {
+                    title: "FT",
+                    keys: ["ftm", "fta"]
+                },
+                {
+                    title: "OREB",
+                    keys: ["oreb"]
+                },
+                {
+                    title: "DREB",
+                    keys: ["dreb"]
+                },
+                {
+                    title: "REB",
+                    keys: ["reb"]
+                },
+                {
+                    title: "AST",
+                    keys: ["ast"]
+                },
+                {
+                    title: "STL",
+                    keys: ["stl"]
+                },
+                {
+                    title: "BLK",
+                    keys: ["blk"]
+                },
+                {
+                    title: "TO",
+                    keys: ["tov"]
+                },
+                {
+                    title: "PF",
+                    keys: ["pf"]
+                },
+                {
+                    title: "+/-",
+                    keys: ["pm"]
+                },
+                {
+                    title: "PTS",
+                    keys: ["pts"]
+                }
+            ],
         }
     }
 }
@@ -107,6 +206,7 @@ export default {
   justify-content: center;
   .team__boxscore__table {
     display: flex;
+    flex-direction: column;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -115,8 +215,27 @@ export default {
     &__header {
       display: flex;
       width: 100%;
-      //   align-items: center;
       justify-content: space-between;
+    }
+    &__body {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .player__stats__row {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+
+        &-cat {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex: auto;
+          width: 5%;
+        }
+      }
     }
   }
 }
