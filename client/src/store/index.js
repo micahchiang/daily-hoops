@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import StatsService from "../services/stats.services";
-import StatsAdapter from "../utilities/stats.adapter";
+// import StatsAdapter from "../utilities/stats.adapter";
 
 Vue.use(Vuex);
 
@@ -9,7 +9,7 @@ Vue.use(Vuex);
 // const dummyBox = require("../../public/boxscore-sampledata.json");
 
 const stats = new StatsService();
-const statsAdapter = new StatsAdapter();
+// const statsAdapter = new StatsAdapter();
 
 const store = new Vuex.Store({
   state: {

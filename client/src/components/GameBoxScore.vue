@@ -38,7 +38,10 @@
                         :key="index"
                     >
                         <p>{{cat.title}}</p>
-                        <p v-for="(stat, index) in category(homePlayerStats, cat.keys)" :key="index">
+                        <p 
+                            v-for="(stat, index) in category(homePlayerStats, cat.keys)" 
+                            :key="index"
+                        >
                             {{stat}}
                         </p>
                     </div>
@@ -66,30 +69,18 @@ export default {
     },
     methods: {
         category: function(players, keys) {
-            if(keys.indexOf("fn") > -1) {
+            if(keys.length === 2 && keys.indexOf("fn") > -1) {
                 let names = [];
                 for(let player of players) {
                     names.push(`${player.fn.charAt(0)}. ${player.ln}`);
                 }
                 return names;
-            } else if(keys.indexOf("fgm") > -1) {
-                let fieldGoals = [];
+            } else if(keys.length === 2) {
+                let stats = [];
                 for(let player of players) {
-                    fieldGoals.push(`${player.fgm}-${player.fga}`);
+                    stats.push(`${player[keys[0]]}-${player[keys[1]]}`);
                 }
-                return fieldGoals;
-            } else if(keys.indexOf("tpm") > -1) {
-                let threes = [];
-                for(let player of players) {
-                    threes.push(`${player.tpm}-${player.tpa}`);
-                }
-                return threes;
-            } else if(keys.indexOf("ftm") > -1) {
-                let freeThrows = [];
-                for(let player of players) {
-                    freeThrows.push(`${player.ftm}-${player.fta}`);
-                }
-                return freeThrows;
+                return stats;
             } else {
                 let cat = [];
                 let key = keys[0];
@@ -216,24 +207,11 @@ export default {
       display: flex;
       width: 100%;
       justify-content: space-between;
-    }
-    &__body {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
 
-      .player__stats__row {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-
-        &-cat {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex: auto;
-          width: 5%;
+      &-cat {
+        p {
+          margin: 0;
+          text-align: left;
         }
       }
     }
