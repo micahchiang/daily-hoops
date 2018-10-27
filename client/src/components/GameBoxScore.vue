@@ -31,6 +31,7 @@
         </aside>
         <section class="team__boxscore">
             <div class="team__boxscore__table">
+                <h3 class="boxscore__teamname">{{boxScore.g.hls.tn}}</h3>
                 <div class="team__boxscore__table__header">
                     <div 
                         class="team__boxscore__table__header-cat"
@@ -40,6 +41,26 @@
                         <p>{{cat.title}}</p>
                         <p 
                             v-for="(stat, index) in category(homePlayerStats, cat.keys)" 
+                            :key="index"
+                        >
+                            {{stat}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="team__boxscore">
+            <div class="team__boxscore__table">
+                <h3 class="boxscore__teamname">{{boxScore.g.vls.tn}}</h3>
+                <div class="team__boxscore__table__header">
+                    <div 
+                        class="team__boxscore__table__header-cat"
+                        v-for="(cat, index) in statCategories"
+                        :key="index"
+                    >
+                        <p>{{cat.title}}</p>
+                        <p 
+                            v-for="(stat, index) in category(awayPlayerStats, cat.keys)" 
                             :key="index"
                         >
                             {{stat}}
@@ -202,6 +223,13 @@ export default {
     justify-content: center;
     align-items: center;
     padding: 2rem;
+
+    .boxscore__teamname {
+        width: 100%;
+        font-weight: 200;
+        border-bottom: 1px solid #cccccc;
+        text-align: left;
+    }
 
     &__header {
       display: flex;
