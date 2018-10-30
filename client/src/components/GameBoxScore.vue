@@ -199,12 +199,12 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      .header__vs {
-        margin: 0 2rem;
-      }
       h1 {
         font-weight: 400;
         font-size: 1.2rem;
+        @media screen and (max-width: 760px) {
+            font-size: 0.8rem;
+        }
       }
     }
   }
@@ -223,6 +223,9 @@ export default {
     justify-content: center;
     align-items: center;
     padding: 2rem;
+    @media screen and (max-width: 760px) {
+        padding: 1rem;
+    }
 
     .boxscore__teamname {
         width: 100%;
@@ -234,12 +237,21 @@ export default {
     &__header {
       display: flex;
       width: 100%;
-      justify-content: space-between;
+      justify-content: center;
 
       &-cat {
+        @media screen and (max-width: 760px) {
+            &:nth-child(n+3):nth-child(-n+7) {
+                display: none;
+            }
+        }
+        flex: auto;
         p {
           margin: 0;
           text-align: left;
+            &:nth-child(even) {
+                background-color: rgba(#cccccc, 0.3);
+            }
         }
       }
     }

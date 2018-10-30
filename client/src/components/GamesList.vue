@@ -2,7 +2,7 @@
     <main>
         <header>
             <h1>
-                Today's Games
+                Today's NBA Boxscores
             </h1>
         </header>
         <section class="list__container">
@@ -49,6 +49,10 @@ h1 {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
+
+  @media screen and (max-width: 760px) {
+      grid-template-columns: 1fr;
+  }
 }
 a {
   color: #ffffff;

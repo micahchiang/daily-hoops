@@ -58,6 +58,10 @@ export default {
   flex-direction: column;
   margin: 0 1.5rem;
   font-size: 1rem;
+  @media screen and (max-width: 760px) {
+      margin: 0 1rem;
+      font-size: .75rem;
+  }
   h1 {
     font-weight: 100;
   }
@@ -69,6 +73,9 @@ export default {
     th,
     td {
       padding: 1rem;
+      @media screen and (max-width: 760px) {
+          padding: 0.5rem;
+      }
     }
   }
 }
