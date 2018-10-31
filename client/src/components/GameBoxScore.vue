@@ -1,75 +1,85 @@
 <template>
-    <main 
-        class="boxscore__container"
-        v-if="Object.keys(boxScore).length > 0"
-    >
-        <aside>
-            <header>
-                <section class="home__team">
-                    <h1>{{ boxScore.g.hls.tc }} {{ boxScore.g.hls.tn }}</h1>
-                    <h1>{{ boxScore.g.hls.s }}</h1>
-                </section>
-                <scoring-summary
-                    v-bind:homeTeamName="boxScore.g.hls.ta"
-                    v-bind:homeTeamQ1="boxScore.g.hls.q1"
-                    v-bind:homeTeamQ2="boxScore.g.hls.q2"
-                    v-bind:homeTeamQ3="boxScore.g.hls.q3"
-                    v-bind:homeTeamQ4="boxScore.g.hls.q4"
-                    v-bind:homeTeamTotal="boxScore.g.hls.s"
-                    v-bind:awayTeamName="boxScore.g.vls.ta"
-                    v-bind:awayTeamQ1="boxScore.g.vls.q1"
-                    v-bind:awayTeamQ2="boxScore.g.vls.q2"
-                    v-bind:awayTeamQ3="boxScore.g.vls.q3"
-                    v-bind:awayTeamQ4="boxScore.g.vls.q4"
-                    v-bind:awayTeamTotal="boxScore.g.vls.s"
-                ></scoring-summary>
-                <section class="away__team">
-                    <h1>{{ boxScore.g.vls.tc }} {{ boxScore.g.vls.tn }}</h1>
-                    <h1>{{ boxScore.g.vls.s }}</h1>
-                </section>
-            </header>
-        </aside>
-        <section class="team__boxscore">
-            <div class="team__boxscore__table">
-                <h3 class="boxscore__teamname">{{boxScore.g.hls.tn}}</h3>
-                <div class="team__boxscore__table__header">
-                    <div 
-                        class="team__boxscore__table__header-cat"
-                        v-for="(cat, index) in statCategories"
-                        :key="index"
-                    >
-                        <p>{{cat.title}}</p>
-                        <p 
-                            v-for="(stat, index) in category(homePlayerStats, cat.keys)" 
+    <div>
+        <main 
+            class="boxscore__container"
+            v-if="boxScore.g.hls.pstsg && boxScore.g.vls.pstsg"
+        >
+            <aside>
+                <header>
+                    <section class="home__team">
+                        <h1>{{ boxScore.g.hls.tc }} {{ boxScore.g.hls.tn }}</h1>
+                        <h1>{{ boxScore.g.hls.s }}</h1>
+                    </section>
+                    <scoring-summary
+                        v-bind:homeTeamName="boxScore.g.hls.ta"
+                        v-bind:homeTeamQ1="boxScore.g.hls.q1"
+                        v-bind:homeTeamQ2="boxScore.g.hls.q2"
+                        v-bind:homeTeamQ3="boxScore.g.hls.q3"
+                        v-bind:homeTeamQ4="boxScore.g.hls.q4"
+                        v-bind:homeTeamTotal="boxScore.g.hls.s"
+                        v-bind:awayTeamName="boxScore.g.vls.ta"
+                        v-bind:awayTeamQ1="boxScore.g.vls.q1"
+                        v-bind:awayTeamQ2="boxScore.g.vls.q2"
+                        v-bind:awayTeamQ3="boxScore.g.vls.q3"
+                        v-bind:awayTeamQ4="boxScore.g.vls.q4"
+                        v-bind:awayTeamTotal="boxScore.g.vls.s"
+                    ></scoring-summary>
+                    <section class="away__team">
+                        <h1>{{ boxScore.g.vls.tc }} {{ boxScore.g.vls.tn }}</h1>
+                        <h1>{{ boxScore.g.vls.s }}</h1>
+                    </section>
+                </header>
+            </aside>
+            <section class="team__boxscore">
+                <div class="team__boxscore__table">
+                    <h3 class="boxscore__teamname">{{boxScore.g.hls.tn}}</h3>
+                    <div class="team__boxscore__table__header">
+                        <div 
+                            class="team__boxscore__table__header-cat"
+                            v-for="(cat, index) in statCategories"
                             :key="index"
                         >
-                            {{stat}}
-                        </p>
+                            <p>{{cat.title}}</p>
+                            <p 
+                                v-for="(stat, index) in category(homePlayerStats, cat.keys)" 
+                                :key="index"
+                            >
+                                {{stat}}
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="team__boxscore">
-            <div class="team__boxscore__table">
-                <h3 class="boxscore__teamname">{{boxScore.g.vls.tn}}</h3>
-                <div class="team__boxscore__table__header">
-                    <div 
-                        class="team__boxscore__table__header-cat"
-                        v-for="(cat, index) in statCategories"
-                        :key="index"
-                    >
-                        <p>{{cat.title}}</p>
-                        <p 
-                            v-for="(stat, index) in category(awayPlayerStats, cat.keys)" 
+            </section>
+            <section class="team__boxscore">
+                <div class="team__boxscore__table">
+                    <h3 class="boxscore__teamname">{{boxScore.g.vls.tn}}</h3>
+                    <div class="team__boxscore__table__header">
+                        <div 
+                            class="team__boxscore__table__header-cat"
+                            v-for="(cat, index) in statCategories"
                             :key="index"
                         >
-                            {{stat}}
-                        </p>
+                            <p>{{cat.title}}</p>
+                            <p 
+                                v-for="(stat, index) in category(awayPlayerStats, cat.keys)" 
+                                :key="index"
+                            >
+                                {{stat}}
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
+        <main
+            class="boxscore__container__else" 
+            v-else
+        >
+            <h1>{{boxScore.g.hls.tn}} vs {{boxScore.g.vls.tn}}</h1>
+            <h1>{{boxScore.g.an}}</h1>
+            <h1>Tip Off: {{boxScore.g.stt}}</h1>
+        </main>
+    </div>
 </template>
 
 <script>
@@ -182,6 +192,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.boxscore__container__else {
+  border-radius: 5px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  height: 100vh;
+  width: 100vw;
+  h1 {
+    font-weight: 200;
+  }
+}
 .boxscore__container {
   border-radius: 5px;
   color: #ffffff;
@@ -203,7 +227,7 @@ export default {
         font-weight: 400;
         font-size: 1.2rem;
         @media screen and (max-width: 760px) {
-            font-size: 0.8rem;
+          font-size: 0.8rem;
         }
       }
     }
@@ -224,14 +248,14 @@ export default {
     align-items: center;
     padding: 2rem;
     @media screen and (max-width: 760px) {
-        padding: 1rem;
+      padding: 1rem;
     }
 
     .boxscore__teamname {
-        width: 100%;
-        font-weight: 200;
-        border-bottom: 1px solid #cccccc;
-        text-align: left;
+      width: 100%;
+      font-weight: 200;
+      border-bottom: 1px solid #cccccc;
+      text-align: left;
     }
 
     &__header {
@@ -241,17 +265,17 @@ export default {
 
       &-cat {
         @media screen and (max-width: 760px) {
-            &:nth-child(n+3):nth-child(-n+7) {
-                display: none;
-            }
+          &:nth-child(n + 3):nth-child(-n + 7) {
+            display: none;
+          }
         }
         flex: auto;
         p {
           margin: 0;
           text-align: left;
-            &:nth-child(even) {
-                background-color: rgba(#cccccc, 0.3);
-            }
+          &:nth-child(even) {
+            background-color: rgba(#cccccc, 0.3);
+          }
         }
       }
     }

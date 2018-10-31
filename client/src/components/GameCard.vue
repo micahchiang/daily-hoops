@@ -33,7 +33,6 @@ export default {
     },
     methods: {
         onClick: function(gID) {
-            console.log(gID);
             this.$store.dispatch('getBoxScore', gID);
         }
     }
