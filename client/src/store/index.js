@@ -1,15 +1,10 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import StatsService from "../services/stats.services";
-// import StatsAdapter from "../utilities/stats.adapter";
 
 Vue.use(Vuex);
 
-// const dummyGames = require('../../public/dummy-data.json');
-// const dummyBox = require("../../public/boxscore-sampledata.json");
-
 const stats = new StatsService();
-// const statsAdapter = new StatsAdapter();
 
 const store = new Vuex.Store({
   state: {
@@ -30,14 +25,14 @@ const store = new Vuex.Store({
     },
     async getBoxScore({ commit }, gameId) {
       try {
-        // let res = await require("../../public/boxscore-sampledata.json");
         let res = await stats.getBoxScore(gameId);
         commit("setBoxScore", res.data);
-        // statsAdapter.formatStats(res.g.vls.pstsg);
-        // commit("setBoxScore", res);
       } catch (e) {
         console.log("an error occurred:", e);
       }
+    },
+    clearBoxScore({ commit }) {
+      commit("clearScore");
     }
   },
   mutations: {
@@ -46,6 +41,9 @@ const store = new Vuex.Store({
     },
     setBoxScore(state, data) {
       state.boxScore = data;
+    },
+    clearScore(state) {
+      state.boxScore = {};
     }
   }
 });

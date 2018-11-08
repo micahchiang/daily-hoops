@@ -26,6 +26,9 @@ import GameCard from '@/components/GameCard.vue';
 
 export default {
     name: "GamesList",
+    created() {
+        this.$store.dispatch('clearBoxScore');
+    },
     components: {
         GameCard
     },
@@ -51,7 +54,7 @@ h1 {
   grid-row-gap: 1rem;
 
   @media screen and (max-width: 760px) {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 }
 a {

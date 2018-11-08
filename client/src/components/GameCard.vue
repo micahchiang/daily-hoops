@@ -3,7 +3,6 @@
         <main>
             <section 
                 class="card__container"
-                @click="onClick(gameId)"
             >
                 <header>
                     <h3>{{homeTeam}} vs {{awayTeam}}</h3>
@@ -29,11 +28,6 @@ export default {
     data () {
         return {
             isShown: false
-        }
-    },
-    methods: {
-        onClick: function(gID) {
-            this.$store.dispatch('getBoxScore', gID);
         }
     }
 }

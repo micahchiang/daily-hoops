@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main__container">
         <main 
             class="boxscore__container"
             v-if="boxScore.g.hls.pstsg && boxScore.g.vls.pstsg"
@@ -91,6 +91,9 @@ export default {
     components: {
         ScoringSummary
     },
+    created() {
+        this.$store.dispatch('getBoxScore', this.$route.params.id);
+    },
     computed: {
         ...mapState({
             boxScore: state => state.boxScore,
@@ -120,6 +123,12 @@ export default {
                 }
                 return cat;
             }
+        },
+        isEmpty: function(obj) {
+            if(Object.keys(obj).length > 0) {
+                return false;
+            }
+            return true;
         }
     },
     data() {
@@ -192,6 +201,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.main__container {
+  animation: fade-in 250ms linear 1;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .boxscore__container__else {
   border-radius: 5px;
   color: #ffffff;

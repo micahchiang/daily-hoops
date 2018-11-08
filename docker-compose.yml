@@ -1,16 +1,16 @@
-version: "2"
+version: '2'
 services:
   server:
     container_name: server
     restart: always
     build: ./server
     ports:
-      - "3000:3000"
+      - '3000:3000'
   client:
     container_name: frontend
     restart: always
     build: ./client
-    ports: 
-      - "8080:80"
+    ports:
+      - '80:80'
     links:
       - server
