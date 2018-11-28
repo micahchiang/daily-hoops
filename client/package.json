@@ -1,6 +1,9 @@
 {
   "name": "daily-hoops",
-  "version": "0.1.0",
+  "author": {
+    "name": "micahkchiang@gmail.com"
+  },
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
