@@ -15,6 +15,18 @@
                 <th>
                     4
                 </th>
+                <th v-if="homeTeamOT1 > 0">
+                    OT
+                </th>
+                <th v-if="homeTeamOT2 > 0">
+                    OT
+                </th>
+                <th v-if="homeTeamOT3 > 0">
+                    OT
+                </th>
+                <th v-if="homeTeamOT4 > 0">
+                    OT
+                </th>
                 <th>
                     T
                 </th>
@@ -26,6 +38,10 @@
                     <td>{{homeTeamQ2}}</td>
                     <td>{{homeTeamQ3}}</td>
                     <td>{{homeTeamQ4}}</td>
+                    <td v-if="homeTeamOT1 > 0">{{homeTeamOT1}}</td>
+                    <td v-if="homeTeamOT2 > 0">{{homeTeamOT2}}</td>
+                    <td v-if="homeTeamOT3 > 0">{{homeTeamOT3}}</td>
+                    <td v-if="homeTeamOT4 > 0">{{homeTeamOT4}}</td>
                     <td>{{homeTeamTotal}}</td>
                 </tr>
                 <tr>
@@ -34,6 +50,10 @@
                     <td>{{awayTeamQ2}}</td>
                     <td>{{awayTeamQ3}}</td>
                     <td>{{awayTeamQ4}}</td>
+                    <td v-if="awayTeamOT1 > 0">{{awayTeamOT1}}</td>
+                    <td v-if="awayTeamOT2 > 0">{{awayTeamOT2}}</td>
+                    <td v-if="awayTeamOT3 > 0">{{awayTeamOT3}}</td>
+                    <td v-if="awayTeamOT4 > 0">{{awayTeamOT4}}</td>
                     <td>{{awayTeamTotal}}</td>
                 </tr>
             </tbody>
@@ -45,8 +65,10 @@
 export default {
     name: "ScoringSummary",
     props: [
-        "homeTeamName", "homeTeamQ1", "homeTeamQ2", "homeTeamQ3", "homeTeamQ4", "homeTeamTotal",
-        "awayTeamName", "awayTeamQ1", "awayTeamQ2", "awayTeamQ3", "awayTeamQ4", "awayTeamTotal"
+        "homeTeamName", "homeTeamQ1", "homeTeamQ2", "homeTeamQ3", "homeTeamQ4", 
+        "homeTeamOT1", "homeTeamOT2", "homeTeamOT3", "homeTeamOT4", "homeTeamTotal",
+        "awayTeamName", "awayTeamQ1", "awayTeamQ2", "awayTeamQ3", "awayTeamQ4",
+        "awayTeamOT1", "awayTeamOT2", "awayTeamOT3", "awayTeamOT4", "awayTeamTotal",
     ]
     
 }

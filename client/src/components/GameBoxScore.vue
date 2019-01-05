@@ -7,7 +7,7 @@
             <aside>
                 <header>
                     <section class="home__team">
-                        <h1>{{ boxScore.g.hls.tc }} {{ boxScore.g.hls.tn }}</h1>
+                        <h1>{{ boxScore.g.hls.tn }}</h1>
                         <h1>{{ boxScore.g.hls.s }}</h1>
                     </section>
                     <scoring-summary
@@ -16,16 +16,24 @@
                         v-bind:homeTeamQ2="boxScore.g.hls.q2"
                         v-bind:homeTeamQ3="boxScore.g.hls.q3"
                         v-bind:homeTeamQ4="boxScore.g.hls.q4"
+                        v-bind:homeTeamOT1="boxScore.g.hls.ot1"
+                        v-bind:homeTeamOT2="boxScore.g.hls.ot2"
+                        v-bind:homeTeamOT3="boxScore.g.hls.ot3"
+                        v-bind:homeTeamOT4="boxScore.g.hls.ot4"
                         v-bind:homeTeamTotal="boxScore.g.hls.s"
                         v-bind:awayTeamName="boxScore.g.vls.ta"
                         v-bind:awayTeamQ1="boxScore.g.vls.q1"
                         v-bind:awayTeamQ2="boxScore.g.vls.q2"
                         v-bind:awayTeamQ3="boxScore.g.vls.q3"
                         v-bind:awayTeamQ4="boxScore.g.vls.q4"
+                        v-bind:awayTeamOT1="boxScore.g.vls.ot1"
+                        v-bind:awayTeamOT2="boxScore.g.vls.ot2"
+                        v-bind:awayTeamOT3="boxScore.g.vls.ot3"
+                        v-bind:awayTeamOT4="boxScore.g.vls.ot4"
                         v-bind:awayTeamTotal="boxScore.g.vls.s"
                     ></scoring-summary>
                     <section class="away__team">
-                        <h1>{{ boxScore.g.vls.tc }} {{ boxScore.g.vls.tn }}</h1>
+                        <h1>{{ boxScore.g.vls.tn }}</h1>
                         <h1>{{ boxScore.g.vls.s }}</h1>
                     </section>
                 </header>
@@ -258,6 +266,7 @@ export default {
   display: flex;
   height: inherit;
   width: 100%;
+  max-width: 800px;
   align-items: center;
   justify-content: center;
   .team__boxscore__table {
@@ -293,8 +302,14 @@ export default {
         p {
           margin: 0;
           text-align: left;
+          @media screen and (max-width: 760px) {
+            font-size: 0.85rem;
+          }
           &:nth-child(even) {
             background-color: rgba(#cccccc, 0.3);
+          }
+          &:nth-child(6) {
+              border-bottom: 1.5px solid #cccccc;
           }
         }
       }
